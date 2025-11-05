@@ -1,4 +1,5 @@
 <script setup>
+const emit = defineEmits(["handleClick"]);
 const props = defineProps({
   title: {
     type: String,
@@ -19,7 +20,11 @@ const props = defineProps({
   height: {
     type: String,
     default: "44px",
-  }
+  },
+  fontSize: {
+    type: String,
+    default: "var(--fs-xs)",
+  },
 });
 </script>
 <template>
@@ -29,8 +34,10 @@ const props = defineProps({
       background: backgroundColor,
       color: color,
       width: width,
-      height: height
+      height: height,
+      fontSize: fontSize,
     }"
+    @click="emit('handleClick')"
     >{{ title }}</el-button
   >
 </template>
@@ -38,7 +45,6 @@ const props = defineProps({
 .button-component {
   border: none;
   border-radius: 12px;
-  font-size: var(--fs-xs);
   font-weight: 700;
 }
 </style>

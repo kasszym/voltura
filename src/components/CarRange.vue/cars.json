@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Voltura ZX 2025",
+    "drivetrain": "AWD",
+    "range": 400,
+    "versions": ["Podstawowa", "Sport", "Performance"],
+    "colors": ["#1F2937", "#E5E7EB", "#28483B"],
+    "additional": ["Koła zimowe", "Akcesoria"],
+    "price": 129999,
+    "acceleration_0_100_s": 5.8,
+    "max_speed_kmh": 165,
+    "charging": 120,
+    "trunk_capacity_l": 520,
+    "guarantee": 5,
+    "main_image": "mainCarImage.png",
+    "type": "SUV",
+    "drive": "Elektryczny"
+  },
+  {
+    "name": "Voltura PX 2025",
+    "drivetrain": "AWD",
+    "range": 500,
+    "versions": ["Podstawowa", "Sport", "Performance"],
+    "colors": ["#1F2937", "#E5E7EB", "#28483B"],
+    "additional": ["Koła zimowe", "Akcesoria"],
+    "price": 129999,
+    "acceleration_0_100_s": 5.8,
+    "max_speed_kmh": 165,
+    "charging": 120,
+    "trunk_capacity_l": 520,
+    "guarantee": 5,
+    "main_image": "mainCarImage.png",
+    "type": "SUV",
+    "drive": "Hybrydowy"
+  },
+  {
+    "name": "Voltura SX 2025",
+    "drivetrain": "AWD",
+    "range": 300,
+    "versions": ["Podstawowa", "Sport", "Performance"],
+    "colors": ["#1F2937", "#E5E7EB", "#28483B"],
+    "additional": ["Koła zimowe", "Akcesoria"],
+    "price": 129999,
+    "acceleration_0_100_s": 5.8,
+    "max_speed_kmh": 165,
+    "charging": 120,
+    "trunk_capacity_l": 520,
+    "guarantee": 5,
+    "main_image": "mainCarImage.png",
+    "type": "Kombi",
+    "drive": "Hybrydowy"
+  }
+]

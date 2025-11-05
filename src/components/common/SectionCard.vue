@@ -4,6 +4,10 @@ const props = defineProps({
     type: String,
     default: "28px",
   },
+  maxWidth: {
+    type: String,
+    default: "100%",
+  },
 });
 </script>
 <template>
@@ -13,6 +17,7 @@ const props = defineProps({
       padding: padding,
       borderColor: 'var(--grey)',
       borderRadius: 'var(--border-radius)',
+      maxWidth: maxWidth
     }"
   >
     <slot name="content" />
