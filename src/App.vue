@@ -2,6 +2,7 @@
 import Header from "./components/Header.vue";
 import IntroComponent from "./components/MainPageComponents/IntroComponent.vue";
 import CarRanges from "./components/CarRange.vue/CarRanges.vue";
+import PromoBanner from "./components/PromoBanner.vue";
 </script>
 
 <template>
@@ -12,8 +13,8 @@ import CarRanges from "./components/CarRange.vue/CarRanges.vue";
       style="gap: 40px; margin: 32px auto"
     >
       <IntroComponent />
-      <div><CarRanges /></div>
-      <div><p>sekcja 3</p></div>
+      <CarRanges />
+      <PromoBanner />
     </main>
   </div>
 </template>
