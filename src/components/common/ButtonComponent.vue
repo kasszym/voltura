@@ -25,6 +25,14 @@ const props = defineProps({
     type: String,
     default: "var(--fs-xs)",
   },
+  fontWeight: {
+    type: Number,
+    default: 700,
+  },
+  border: {
+    type: String,
+    default: 'none'
+  }
 });
 </script>
 <template>
@@ -36,6 +44,8 @@ const props = defineProps({
       width: width,
       height: height,
       fontSize: fontSize,
+      fontWeight: fontWeight,
+      border: border
     }"
     @click="emit('handleClick')"
     >{{ title }}</el-button
@@ -45,6 +55,5 @@ const props = defineProps({
 .button-component {
   border: none;
   border-radius: 12px;
-  font-weight: 700;
 }
 </style>

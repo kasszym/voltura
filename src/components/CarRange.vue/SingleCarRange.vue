@@ -1,5 +1,7 @@
 <script setup>
+import { ref } from "vue";
 import ButtonComponent from "../common/ButtonComponent.vue";
+import CarModal from "./CarModal.vue";
 
 const props = defineProps({
   car: {
@@ -11,6 +13,9 @@ const formatPrice = (value) => value.toLocaleString("pl-PL");
 
 const getCarImage = (img) =>
   new URL(`../../assets/${img}`, import.meta.url).href;
+
+const carModalRef = ref();
+const openDialog = () => carModalRef.value?.open();
 </script>
 
 <template>
@@ -48,6 +53,11 @@ const getCarImage = (img) =>
           width="88px"
           height="22px"
           font-size="var(--fs-xxs)"
+          @handle-click="openDialog"
+        />
+        <CarModal
+          ref="carModalRef"
+          :car="car"
         />
       </div>
     </div>
