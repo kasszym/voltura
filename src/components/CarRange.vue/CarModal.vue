@@ -1,7 +1,11 @@
 <script setup>
 import { ref } from "vue";
 import ButtonComponent from "../common/ButtonComponent.vue";
+import SectionCard from "../common/SectionCard.vue";
 import Modal from "../common/Modal.vue";
+import CarCustomization from "./CarCustomization.vue";
+import CarGallery from "./CarGallery.vue";
+import CarFeatures from "./CarFeatures.vue";
 
 const props = defineProps({
   car: {
@@ -22,7 +26,27 @@ defineExpose({ open, close });
     :header="car.name"
   >
     <template #content>
-      <div>content</div>
+      <div style="display: flex; gap: 36px">
+        <div style="width: 660px"><CarGallery :images="car.images" /></div>
+        <div class="d-flex flex-column gap-3">
+          <SectionCard padding="16px 14px">
+            <template #content>
+              <CarCustomization :car="car" />
+            </template>
+          </SectionCard>
+          <SectionCard padding="16px 14px">
+            <template #content>
+              <CarFeatures
+                :acceleration="car.acceleration_0_100_s"
+                :max_speed="car.max_speed_kmh"
+                :charging="car.charging"
+                :trunk_capacity="car.trunk_capacity"
+                :guarantee="car.guarantee"
+              />
+            </template>
+          </SectionCard>
+        </div>
+      </div>
     </template>
     <template #footer>
       <ButtonComponent
