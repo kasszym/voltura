@@ -3,6 +3,7 @@ import Header from "./components/Header.vue";
 import IntroComponent from "./components/MainPageComponents/IntroComponent.vue";
 import CarRanges from "./components/CarRange.vue/CarRanges.vue";
 import PromoBanner from "./components/PromoBanner.vue";
+import InfoComponent from "./components/InfoComponent/InfoComponent.vue";
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import PromoBanner from "./components/PromoBanner.vue";
       <IntroComponent />
       <CarRanges />
       <PromoBanner />
+      <InfoComponent />
     </main>
   </div>
 </template>
