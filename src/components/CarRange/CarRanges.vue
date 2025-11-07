@@ -15,6 +15,12 @@ function applyFilter(payload) {
   filters.value = payload;
 }
 
+const getCarPrice = (car) => {
+  const chosen = car.selectedVersion ?? car.versions?.[0]?.title;
+  const v = car.versions?.find((x) => x.title === chosen);
+  return v?.price ?? 0;
+};
+
 const filteredCars = computed(() => {
   const { type, drive, priceMin, priceMax } = filters.value;
 
@@ -22,9 +28,11 @@ const filteredCars = computed(() => {
     if (type && car.type !== type) return false;
     if (drive && car.drive !== drive) return false;
 
-    if (priceMin != null && priceMin != "" && car.price < Number(priceMin))
+    const price = getCarPrice(car);
+
+    if (priceMin != null && priceMin !== "" && price < Number(priceMin))
       return false;
-    if (priceMax != null && priceMax != "" && car.price > Number(priceMax))
+    if (priceMax != null && priceMax !== "" && price > Number(priceMax))
       return false;
 
     return true;

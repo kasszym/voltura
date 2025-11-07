@@ -80,6 +80,9 @@ function onSubmit(e) {
                 placeholder="min"
                 clearable
                 v-model.number="priceMin"
+                @input="
+                  $event.target.value = $event.target.value.replace(/\D+/g, '')
+                "
               />
               <span class="dash">-</span>
               <input
@@ -88,6 +91,9 @@ function onSubmit(e) {
                 placeholder="max"
                 clearable
                 v-model.number="priceMax"
+                @input="
+                  $event.target.value = $event.target.value.replace(/\D+/g, '')
+                "
               />
             </div>
           </div>
