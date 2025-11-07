@@ -9,7 +9,11 @@
       { "title": "Sport", "price": 139999 },
       { "title": "Performance", "price": 149999 }
     ],
-    "colors": ["var(--black)", "var(--grey)", "var(--green)"],
+    "colors": [
+      { "value": "var(--black)", "name": "Czarny" },
+      { "value": "var(--grey)", "name": "Szary" },
+      { "value": "var(--green)", "name": "Zielony" }
+    ],
     "additional": [
       { "title": "Koła zimowe", "price": 5000 },
       { "title": "Akcesoria", "price": 50000 }
@@ -34,7 +38,11 @@
       { "title": "Sport", "price": 239999 },
       { "title": "Performance", "price": 249999 }
     ],
-    "colors": ["var(--black)", "var(--grey)", "var(--green)"],
+    "colors": [
+      { "value": "var(--black)", "name": "Czarny" },
+      { "value": "var(--grey)", "name": "Szary" },
+      { "value": "var(--green)", "name": "Zielony" }
+    ],
     "additional": [
       { "title": "Koła zimowe", "price": 5000 },
       { "title": "Akcesoria", "price": 50000 }
@@ -60,7 +68,11 @@
       { "title": "Sport", "price": 339999 },
       { "title": "Performance", "price": 349999 }
     ],
-    "colors": ["var(--black)", "var(--grey)", "var(--green)"],
+    "colors": [
+      { "value": "var(--black)", "name": "Czarny" },
+      { "value": "var(--grey)", "name": "Szary" },
+      { "value": "var(--green)", "name": "Zielony" }
+    ],
     "additional": [
       { "title": "Koła zimowe", "price": 5000 },
       { "title": "Akcesoria", "price": 50000 }

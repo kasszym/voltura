@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import ButtonComponent from "../common/ButtonComponent.vue";
+import { ElMessage } from "element-plus";
 
 const props = defineProps({
   car: {
@@ -26,7 +27,7 @@ const addonsTotal = computed(() =>
   selectedAddons.value.reduce((sum, a) => sum + (a.price ?? 0), 0)
 );
 const totalPrice = computed(() => basePrice.value + addonsTotal.value);
-const color = ref(props.car.colors?.[0] ?? "");
+const color = ref(props.car.colors?.[0].name ?? "");
 
 const formatPrice = (value) => value.toLocaleString("pl-PL");
 const savetoLocalStorage = () => {
@@ -38,6 +39,10 @@ const savetoLocalStorage = () => {
     price: totalPrice.value,
   };
   localStorage.setItem("selectedCar", JSON.stringify(payload));
+  ElMessage({
+    message: "Zapisano zmiany.",
+    type: "success",
+  });
 };
 defineExpose({ open, close, savetoLocalStorage });
 </script>
@@ -66,16 +71,17 @@ defineExpose({ open, close, savetoLocalStorage });
         class="color-swatches"
       >
         <el-radio
-          v-for="c in props.car.colors"
-          :key="c"
-          :label="c"
+          v-for="(c, index) in props.car.colors"
+          :key="index"
+          :label="c.name"
+          :value="c.name"
           class="color-swatch"
         >
           <span
             class="color-dot"
             :style="{
-              backgroundColor: c,
-              border: `1px solid ${c}`,
+              backgroundColor: c.value,
+              border: `1px solid ${c.value}`,
             }"
           />
         </el-radio>
@@ -154,7 +160,7 @@ defineExpose({ open, close, savetoLocalStorage });
 }
 .el-checkbox-button.is-checked .el-checkbox-button__inner {
   background: var(--main-color);
-  border: 1px solid var(--main-color) !important;;
+  border: 1px solid var(--main-color) !important;
   font-weight: 700;
 }
 .color-dot {

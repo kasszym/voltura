@@ -6,16 +6,9 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  modelValue: { type: Number, default: 0 }, 
 });
 
-const emit = defineEmits(["update:modelValue"]);
-
-const i = computed({
-  get: () => props.modelValue,
-  set: (v) =>
-    emit("update:modelValue", (v + props.images.length) % props.images.length),
-});
+const i = ref(0)
 const current = computed(() => props.images[i.value] || null);
 
 const select = (idx) => (i.value = idx);
