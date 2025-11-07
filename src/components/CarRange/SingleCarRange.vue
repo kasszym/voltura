@@ -10,9 +10,9 @@ const props = defineProps({
   },
 });
 const formatPrice = (value) => value.toLocaleString("pl-PL");
-
-const getCarImage = (img) =>
-  new URL(`../../assets/${img}`, import.meta.url).href;
+const selectedImage = ref(props.car.main_image);
+const getCarImage = () =>
+  new URL(`../../assets/${selectedImage.value}`, import.meta.url).href;
 
 const carModalRef = ref();
 const openDialog = () => carModalRef.value?.open();
@@ -28,8 +28,9 @@ const openDialog = () => carModalRef.value?.open();
     "
   >
     <img
-      :src="getCarImage(car.main_image)"
+      :src="getCarImage()"
       :alt="car.name"
+      style="height: 200px; object-fit: cover;"
       class="card-img-top d-block img-fluid"
     />
     <div
@@ -58,6 +59,7 @@ const openDialog = () => carModalRef.value?.open();
         <CarModal
           ref="carModalRef"
           :car="car"
+          v-model:selectedImage="selectedImage"
         />
       </div>
     </div>

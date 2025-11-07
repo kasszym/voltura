@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import ButtonComponent from "../common/ButtonComponent.vue";
 import SectionCard from "../common/SectionCard.vue";
 import Modal from "../common/Modal.vue";
@@ -12,9 +12,23 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  selectedImage: { type: String, default: "" },
 });
-
+const emit = defineEmits(["update:selectedImage"]);
 const isDialogOpen = ref(false);
+const selectedIndex = ref(0);
+const syncIndex = () => {
+  const idx = props.car.images.indexOf(props.selectedImage);
+  selectedIndex.value = idx >= 0 ? idx : 0;
+};
+
+watch(isDialogOpen, (open) => {
+  if (open) {
+    syncIndex();
+  } else {
+    emit("update:selectedImage", props.car.images[selectedIndex.value]);
+  }
+});
 
 const open = () => (isDialogOpen.value = true);
 const close = () => (isDialogOpen.value = false);
@@ -27,7 +41,12 @@ defineExpose({ open, close });
   >
     <template #content>
       <div class="car-modal">
-        <div class="car-gallery"><CarGallery :images="car.images" /></div>
+        <div class="car-gallery">
+          <CarGallery
+            :images="car.images"
+            v-model="selectedIndex"
+          />
+        </div>
         <div class="d-flex flex-column gap-3">
           <SectionCard padding="16px 14px">
             <template #content>

@@ -6,22 +6,24 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  modelValue: { type: Number, default: 0 }, 
 });
 
-const i = ref(0);
+const emit = defineEmits(["update:modelValue"]);
+
+const i = computed({
+  get: () => props.modelValue,
+  set: (v) =>
+    emit("update:modelValue", (v + props.images.length) % props.images.length),
+});
 const current = computed(() => props.images[i.value] || null);
 
-const select = (idx) => {
-  i.value = idx;
-};
-const next = () => {
-  i.value = (i.value + 1) % props.images.length;
-};
-const prev = () => {
-  i.value = (i.value - 1 + props.images.length) % props.images.length;
-};
+const select = (idx) => (i.value = idx);
+const next = () => (i.value = i.value + 1);
+const prev = () => (i.value = i.value - 1);
+
 const getCarImage = (img) =>
-  new URL(`../../assets/catalog/${img}`, import.meta.url).href;
+  new URL(`../../assets/${img}`, import.meta.url).href;
 
 const filteredImages = computed(() =>
   props.images
@@ -47,9 +49,7 @@ const filteredImages = computed(() =>
         loading="eager"
       />
     </div>
-    <div
-      class="d-flex flex-wrap images-wrap"
-    >
+    <div class="d-flex flex-wrap images-wrap">
       <button
         v-for="t in filteredImages"
         :key="t.img"
@@ -77,8 +77,8 @@ const filteredImages = computed(() =>
   height: 120px;
   object-fit: cover;
 }
-.images-wrap{
-  gap: 30px
+.images-wrap {
+  gap: 30px;
 }
 @media (max-width: 1120px) {
   .main-image {
