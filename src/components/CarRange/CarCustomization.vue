@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import ButtonComponent from "../common/ButtonComponent.vue";
 
 const props = defineProps({
@@ -8,10 +8,27 @@ const props = defineProps({
     required: true,
   },
 });
-const version = ref(props.car.versions?.[0] ?? "");
+const version = ref(
+  props.car.selectedVersion ?? props.car.versions?.[0]?.title ?? ""
+);
+const selectedPrice = computed(() => {
+  const v = props.car.versions?.find((x) => x.title === version.value);
+  return v?.price ?? 0;
+});
 const color = ref(props.car.colors?.[0] ?? "");
 const addon = ref(null);
 const formatPrice = (value) => value.toLocaleString("pl-PL");
+const savetoLocalStorage = () => {
+  const payload = {
+    name: props.car.name,
+    version: version.value,
+    color: color.value,
+    addon: addon.value,
+    price: selectedPrice.value,
+  };
+  localStorage.setItem(props.car.name, JSON.stringify(payload));
+};
+defineExpose({ open, close, savetoLocalStorage });
 </script>
 
 <template>
@@ -24,10 +41,10 @@ const formatPrice = (value) => value.toLocaleString("pl-PL");
       >
         <el-radio-button
           v-for="v in props.car.versions"
-          :key="v"
-          :label="v"
+          :key="v.title"
+          :label="v.title"
         >
-          {{ v }}
+          {{ v.title }}
         </el-radio-button>
       </el-radio-group>
     </div>
@@ -75,7 +92,7 @@ const formatPrice = (value) => value.toLocaleString("pl-PL");
           class="fw-bold fs-4"
           style="color: var(--navy)"
         >
-          {{ formatPrice(car.price) }} zł
+          {{ formatPrice(selectedPrice) }} zł
         </span>
       </div>
 
@@ -85,6 +102,7 @@ const formatPrice = (value) => value.toLocaleString("pl-PL");
         background-color="var(--green)"
         background-color-hover="var(--dark-green)"
         height="40px"
+        @handle-click="savetoLocalStorage"
       />
     </div>
   </div>
@@ -154,6 +172,7 @@ const formatPrice = (value) => value.toLocaleString("pl-PL");
 .addon-group .el-radio-button__inner {
   width: 100%;
 }
-.version-group { grid-template-columns: repeat(3, 1fr); }
-
+.version-group {
+  grid-template-columns: repeat(3, 1fr);
+}
 </style>

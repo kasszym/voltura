@@ -15,6 +15,7 @@ const props = defineProps({
   selectedImage: { type: String, default: "" },
 });
 const emit = defineEmits(["update:selectedImage"]);
+const carCustomizationRef = ref();
 const isDialogOpen = ref(false);
 const selectedIndex = ref(0);
 const syncIndex = () => {
@@ -33,6 +34,9 @@ watch(isDialogOpen, (open) => {
 const open = () => (isDialogOpen.value = true);
 const close = () => (isDialogOpen.value = false);
 defineExpose({ open, close });
+const savetoLocalStorage = () => {
+  carCustomizationRef.value?.savetoLocalStorage();
+};
 </script>
 <template>
   <Modal
@@ -50,7 +54,10 @@ defineExpose({ open, close });
         <div class="d-flex flex-column gap-3">
           <SectionCard padding="16px 14px">
             <template #content>
-              <CarCustomization :car="car" />
+              <CarCustomization
+                ref="carCustomizationRef"
+                :car="car"
+              />
             </template>
           </SectionCard>
           <SectionCard padding="16px 14px">
@@ -83,6 +90,7 @@ defineExpose({ open, close });
       <ButtonComponent
         title="Znajdź dealera"
         width="134px"
+        @handle-click="savetoLocalStorage"
       />
     </template>
   </Modal>

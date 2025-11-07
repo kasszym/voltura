@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import ButtonComponent from "../common/ButtonComponent.vue";
 import CarModal from "./CarModal.vue";
 
@@ -16,6 +16,14 @@ const getCarImage = () =>
 
 const carModalRef = ref();
 const openDialog = () => carModalRef.value?.open();
+const selectedVersion = ref(
+  props.car.selectedVersion ?? props.car.versions?.[0]?.title ?? ""
+);
+
+const selectedPrice = computed(() => {
+  const v = props.car.versions?.find((x) => x.title === selectedVersion.value);
+  return v?.price ?? 0;
+});
 </script>
 
 <template>
@@ -30,7 +38,7 @@ const openDialog = () => carModalRef.value?.open();
     <img
       :src="getCarImage()"
       :alt="car.name"
-      style="height: 200px; object-fit: cover;"
+      style="height: 200px; object-fit: cover"
       class="card-img-top d-block img-fluid"
     />
     <div
@@ -42,7 +50,7 @@ const openDialog = () => carModalRef.value?.open();
         style="color: var(--navy); font-size: var(--fs-l); row-gap: 3px"
       >
         <span>{{ car.name }}</span>
-        <span>od {{ formatPrice(car.price) }} zł</span>
+        <span>od {{ formatPrice(selectedPrice) }} zł</span>
       </div>
       <div
         class="d-flex justify-content-between align-items-center"
@@ -60,6 +68,7 @@ const openDialog = () => carModalRef.value?.open();
           ref="carModalRef"
           :car="car"
           v-model:selectedImage="selectedImage"
+          v-model:selectedVersion="selectedVersion"
         />
       </div>
     </div>
