@@ -75,8 +75,9 @@ defineExpose({ open, close });
 }
 .car-gallery {
   width: 660px;
+  flex: 0 0 660px;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1120px) {
   .car-modal {
     flex-direction: column;
   }

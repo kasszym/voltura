@@ -137,17 +137,23 @@ const formatPrice = (value) => value.toLocaleString("pl-PL");
   outline-offset: 2px;
   border-radius: 8px;
 }
-.version-group .el-radio-button {
-  flex: 0 0 109px;
-  width: 109px;
-}
-.el-radio-button__inner {
+.version-group,
+.addon-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
   width: 100%;
-  text-align: center;
-  padding: 8px 0;
 }
+
+.version-group .el-radio-button,
 .addon-group .el-radio-button {
-  flex: 0 0 164px;
-  width: 164px;
+  width: 100%;
 }
+
+.version-group .el-radio-button__inner,
+.addon-group .el-radio-button__inner {
+  width: 100%;
+}
+.version-group { grid-template-columns: repeat(3, 1fr); }
+
 </style>

@@ -43,7 +43,7 @@ const visible = computed({
   --el-dialog-border-radius: none;
   --el-dialog-padding-primary: 0;
   --el-dialog-margin-top: 5vh;
-  --el-dialog-width: 1200px;
+  --el-dialog-width: 1120px;
 }
 .el-dialog__header {
   padding: 20px 24px;
@@ -52,7 +52,7 @@ const visible = computed({
   display: block;
   padding: 28px 20px 38px;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1120px) {
   .el-dialog {
     --el-dialog-width: 100%;
     --el-dialog-margin-top: 0;

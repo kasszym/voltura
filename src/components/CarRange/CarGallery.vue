@@ -80,7 +80,7 @@ const filteredImages = computed(() =>
 .images-wrap{
   gap: 30px
 }
-@media (max-width: 1200px) {
+@media (max-width: 1120px) {
   .main-image {
     height: auto;
   }
