@@ -12,8 +12,14 @@ const i = ref(0)
 const current = computed(() => props.images[i.value] || null);
 
 const select = (idx) => (i.value = idx);
-const next = () => (i.value = i.value + 1);
-const prev = () => (i.value = i.value - 1);
+const next = () => {
+  if (i.value !== filteredImages.value.length) i.value = i.value + 1;
+  else i.value = 0;
+};
+const prev = () => {
+  if (i.value !== 0) i.value = i.value - 1;
+  else i.value = filteredImages.value.length;
+};
 
 const getCarImage = (img) =>
   new URL(`../../assets/${img}`, import.meta.url).href;
@@ -30,6 +36,7 @@ const filteredImages = computed(() =>
     <div
       class="position-relative overflow-hidden main-image"
       style="border-radius: 8px"
+      tabindex="0"
       @keydown.left.prevent="prev"
       @keydown.right.prevent="next"
     >
